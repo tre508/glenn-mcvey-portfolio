@@ -5,6 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Glenn McVey — Full-Stack Engineer & AI/ML Developer</title>
   <meta name="description" content="Full-Stack Engineer specializing in Python, TypeScript, AI/ML systems, and production-grade infrastructure. Open for Technical Development roles in Germany.">
+
+  <!-- Open Graph / Social Media -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://glenn.wekeke.com/">
+  <meta property="og:title" content="Glenn McVey — Full-Stack Engineer & AI/ML Developer">
+  <meta property="og:description" content="Building production systems with Python, TypeScript & React. 7+ years shipping reliable infrastructure that scales.">
+  <meta property="og:site_name" content="Glenn McVey Portfolio">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Glenn McVey — Full-Stack Engineer & AI/ML Developer">
+  <meta name="twitter:description" content="Building production systems with Python, TypeScript & React. 7+ years shipping reliable infrastructure.">
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%236366f1'/><text x='50' y='70' font-size='60' text-anchor='middle' fill='white' font-family='system-ui' font-weight='bold'>GM</text></svg>">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 
@@ -733,7 +748,9 @@
     .marquee-strip {
       width: 100%;
       overflow: hidden;
-      background: #aaff00;
+      background: linear-gradient(90deg, #18181b 0%, #27272a 50%, #18181b 100%);
+      border-top: 1px solid rgba(99, 102, 241, 0.15);
+      border-bottom: 1px solid rgba(99, 102, 241, 0.15);
       padding: 14px 0;
       position: relative;
       z-index: 10;
@@ -742,7 +759,7 @@
       display: flex;
       gap: 0;
       width: max-content;
-      animation: marqueeScroll 28s linear infinite;
+      animation: marqueeScroll 40s linear infinite;
     }
     .marquee-track:hover { animation-play-state: paused; }
     .marquee-item {
@@ -750,18 +767,18 @@
       align-items: center;
       gap: 20px;
       white-space: nowrap;
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 2.5px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
       text-transform: uppercase;
-      color: #000000;
+      color: #a78bfa;
       padding-right: 20px;
     }
     .marquee-sep {
       display: inline-block;
-      width: 5px;
-      height: 5px;
-      background: #09090b;
+      width: 4px;
+      height: 4px;
+      background: #6366f1;
       border-radius: 50%;
       flex-shrink: 0;
     }
