@@ -1,0 +1,1731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Glenn McVey — Full-Stack Engineer & AI/ML Developer</title>
+  <meta name="description" content="Full-Stack Engineer specializing in Python, TypeScript, AI/ML systems, and production-grade infrastructure. Open for Technical Development roles in Germany.">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #09090b;
+      --surface: #111113;
+      --surface2: #18181b;
+      --border: rgba(255,255,255,.07);
+      --border-hover: rgba(255,255,255,.14);
+      --text: #fafafa;
+      --muted: #71717a;
+      --accent: #6366f1;
+      --accent2: #a855f7;
+      --accent-glow: rgba(99,102,241,.25);
+      --green: #22c55e;
+      --python: #3776ab;
+      --ml: #ff6b6b;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    nav {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 8px 12px;
+      background: rgba(9,9,11,.7);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--border);
+      border-radius: 50px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 500;
+      padding: 6px 14px;
+      border-radius: 50px;
+      transition: color .2s, background .2s;
+    }
+
+    nav a:hover { color: var(--text); background: var(--surface2); }
+
+    nav .nav-cta {
+      color: var(--text);
+      background: var(--surface2);
+      border: 1px solid var(--border-hover);
+    }
+
+    nav .nav-cta:hover { border-color: var(--accent); color: var(--accent); }
+
+    .lang-toggle {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 6px 10px;
+      background: var(--surface2);
+      border: 1px solid var(--border-hover);
+      border-radius: 50px;
+      cursor: pointer;
+      margin-left: 8px;
+      user-select: none;
+      transition: border-color .2s;
+    }
+
+    .lang-toggle:hover { border-color: var(--accent); }
+
+    .lang-flag {
+      font-size: 16px;
+      line-height: 1;
+      display: inline-block;
+      transition: transform .3s cubic-bezier(.68,-0.55,.27,1.55), opacity .3s;
+    }
+
+    .lang-flag.active {
+      transform: scale(1.2) rotate(10deg);
+      opacity: 1;
+    }
+
+    .lang-flag.inactive {
+      transform: scale(0.85) rotate(-5deg);
+      opacity: 0.4;
+    }
+
+    .lang-divider {
+      width: 1px;
+      height: 16px;
+      background: var(--border);
+    }
+
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 24px 80px;
+      position: relative;
+    }
+
+    #hero::after {
+      content: '';
+      position: absolute;
+      top: 30%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 700px;
+      height: 400px;
+      background: radial-gradient(ellipse at center, rgba(99,102,241,.18) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      background: rgba(34,197,94,.08);
+      border: 1px solid rgba(34,197,94,.2);
+      border-radius: 50px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--green);
+      margin-bottom: 32px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-badge::before {
+      content: '';
+      width: 7px;
+      height: 7px;
+      background: var(--green);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--green);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: .4; }
+    }
+
+    .hero-title {
+      font-size: clamp(52px, 8vw, 96px);
+      font-weight: 800;
+      letter-spacing: -3px;
+      line-height: 1;
+      margin-bottom: 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-title .gradient {
+      background: linear-gradient(to right, #ffffff 0%, #a5a8ff 40%, var(--accent2) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-sub {
+      font-size: clamp(16px, 2.5vw, 20px);
+      color: var(--muted);
+      font-weight: 400;
+      max-width: 560px;
+      margin-bottom: 40px;
+      line-height: 1.6;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-sub strong { color: rgba(255,255,255,.7); font-weight: 500; }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all .2s;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+      box-shadow: 0 0 30px rgba(99,102,241,.3);
+    }
+
+    .btn-primary:hover {
+      background: #5254cc;
+      box-shadow: 0 0 40px rgba(99,102,241,.5);
+      transform: translateY(-1px);
+    }
+
+    .btn-ghost {
+      background: var(--surface2);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--border-hover);
+      background: rgba(255,255,255,.05);
+      transform: translateY(-1px);
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: var(--muted);
+      font-size: 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      animation: fadeUp 3s ease infinite;
+    }
+
+    .scroll-hint .arrow {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, transparent, var(--muted));
+    }
+
+    @keyframes fadeUp {
+      0%, 100% { opacity: 0.3; transform: translateX(-50%) translateY(0); }
+      50% { opacity: 1; transform: translateX(-50%) translateY(-6px); }
+    }
+
+    section {
+      padding: 100px 24px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+
+    .section-label::before {
+      content: '';
+      width: 20px;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    .section-title {
+      font-size: clamp(32px, 5vw, 48px);
+      font-weight: 800;
+      letter-spacing: -1.5px;
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+
+    .section-desc {
+      font-size: 16px;
+      color: var(--muted);
+      max-width: 500px;
+      margin-bottom: 56px;
+      line-height: 1.7;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    .about-text {
+      font-size: 15px;
+      color: rgba(255,255,255,.75);
+      line-height: 1.8;
+    }
+
+    .about-text p { margin-bottom: 16px; }
+    .about-text strong { color: var(--text); font-weight: 600; }
+
+    .about-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .stat-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      transition: border-color .2s;
+    }
+
+    .stat-card:hover { border-color: var(--border-hover); }
+
+    .stat-number {
+      font-size: 36px;
+      font-weight: 800;
+      letter-spacing: -1px;
+      background: linear-gradient(135deg, var(--text), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .stat-label {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 4px;
+      font-weight: 500;
+    }
+
+    .exp-list {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .exp-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px 32px;
+      transition: border-color .2s, background .2s;
+      cursor: default;
+    }
+
+    .exp-item:hover {
+      border-color: var(--border-hover);
+      background: rgba(255,255,255,.03);
+    }
+
+    .exp-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 12px;
+    }
+
+    .exp-role {
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+    }
+
+    .exp-company {
+      font-size: 13px;
+      color: var(--accent);
+      font-weight: 500;
+      margin-top: 3px;
+    }
+
+    .exp-date {
+      font-size: 12px;
+      color: var(--muted);
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      padding: 4px 12px;
+      border-radius: 50px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .exp-bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .exp-bullets li {
+      font-size: 13.5px;
+      color: var(--muted);
+      padding-left: 16px;
+      position: relative;
+      line-height: 1.6;
+    }
+
+    .exp-bullets li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: 11px;
+      top: 3px;
+    }
+
+    .exp-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    .tag {
+      font-size: 11px;
+      font-weight: 500;
+      padding: 4px 10px;
+      background: rgba(99,102,241,.1);
+      border: 1px solid rgba(99,102,241,.2);
+      border-radius: 6px;
+      color: rgba(150,153,255,.9);
+    }
+
+    .tag.python { background: rgba(55,118,171,.1); border-color: rgba(55,118,171,.3); color: #6fa3d8; }
+    .tag.ml { background: rgba(255,107,107,.1); border-color: rgba(255,107,107,.3); color: #ff9b9b; }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .project-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 32px;
+      transition: border-color .25s, transform .25s, box-shadow .25s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      opacity: 0;
+      transition: opacity .3s;
+    }
+
+    .project-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-3px);
+      box-shadow: 0 20px 60px rgba(0,0,0,.4);
+    }
+
+    .project-card:hover::before { opacity: 1; }
+
+    .project-card.featured {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .project-icon {
+      width: 44px;
+      height: 44px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
+
+    .project-card.featured .project-icon { display: none; }
+
+    .project-name {
+      font-size: 19px;
+      font-weight: 700;
+      letter-spacing: -0.4px;
+      margin-bottom: 8px;
+    }
+
+    .project-desc {
+      font-size: 13.5px;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    .project-highlights {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .project-highlights li {
+      font-size: 13px;
+      color: rgba(255,255,255,.6);
+      padding-left: 14px;
+      position: relative;
+    }
+
+    .project-highlights li::before {
+      content: '·';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .project-visual {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .mini-stat {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .mini-stat-label { font-size: 11px; color: var(--muted); }
+    .mini-stat-value { font-size: 13px; font-weight: 600; color: var(--text); }
+
+    .mini-bar-track {
+      height: 4px;
+      background: rgba(255,255,255,.08);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .mini-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      border-radius: 4px;
+    }
+
+    .skills-categories {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .skill-category {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      transition: border-color .2s;
+    }
+
+    .skill-category:hover { border-color: var(--border-hover); }
+
+    .skill-cat-title {
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+
+    .skill-items {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .skill-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .skill-name { font-size: 13px; color: rgba(255,255,255,.8); }
+
+    .skill-dots {
+      display: flex;
+      gap: 4px;
+    }
+
+    .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+    }
+
+    .dot.filled { background: var(--accent); }
+    .dot.empty { background: var(--surface2); border: 1px solid var(--border); }
+
+    #contact {
+      text-align: center;
+      padding: 100px 24px 140px;
+    }
+
+    .contact-card {
+      max-width: 600px;
+      margin: 0 auto;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 56px 48px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-card::before {
+      content: '';
+      position: absolute;
+      top: -60px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 300px;
+      height: 150px;
+      background: radial-gradient(ellipse, rgba(99,102,241,.2), transparent 70%);
+      pointer-events: none;
+    }
+
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 32px;
+    }
+
+    .contact-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 500;
+      color: rgba(255,255,255,.7);
+      text-decoration: none;
+      transition: all .2s;
+    }
+
+    .contact-link:hover {
+      border-color: var(--accent);
+      color: var(--text);
+      background: rgba(99,102,241,.08);
+    }
+
+    footer {
+      text-align: center;
+      padding: 24px;
+      font-size: 12px;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+    }
+
+    .blob-green {
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(170,255,0,0.22) 0%, rgba(170,255,0,0.06) 45%, transparent 70%);
+      filter: blur(48px);
+      pointer-events: none;
+      z-index: 0;
+      top: 10%;
+      right: -80px;
+      animation: blobDrift 12s ease-in-out infinite alternate;
+    }
+    @keyframes blobDrift {
+      0%   { transform: translate(0, 0) scale(1); }
+      50%  { transform: translate(-30px, 30px) scale(1.06); }
+      100% { transform: translate(20px, -20px) scale(0.97); }
+    }
+
+    .marquee-strip {
+      width: 100%;
+      overflow: hidden;
+      background: #aaff00;
+      padding: 14px 0;
+      position: relative;
+      z-index: 10;
+    }
+    .marquee-track {
+      display: flex;
+      gap: 0;
+      width: max-content;
+      animation: marqueeScroll 28s linear infinite;
+    }
+    .marquee-track:hover { animation-play-state: paused; }
+    .marquee-item {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      white-space: nowrap;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: #000000;
+      padding-right: 20px;
+    }
+    .marquee-sep {
+      display: inline-block;
+      width: 5px;
+      height: 5px;
+      background: #09090b;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    @keyframes marqueeScroll {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    .split-card {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      background: #0a0a0a;
+      border: 1px solid rgba(255,255,255,.07);
+      overflow: hidden;
+    }
+    .split-card-text {
+      padding: 56px 48px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 32px;
+    }
+    .split-card-eyebrow {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: #aaff00;
+    }
+    .split-card-heading {
+      font-size: clamp(28px, 3.5vw, 42px);
+      font-weight: 800;
+      letter-spacing: -1.2px;
+      line-height: 1.1;
+      color: #fafafa;
+    }
+    .split-card-body {
+      font-size: 14px;
+      color: rgba(255,255,255,.55);
+      line-height: 1.8;
+    }
+    .split-card-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #aaff00;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(170,255,0,.3);
+      padding-bottom: 2px;
+      width: fit-content;
+      transition: border-color .2s, gap .2s;
+    }
+    .split-card-cta:hover { border-color: #aaff00; gap: 16px; }
+    .split-card-visual {
+      background: #111113;
+      border-left: 1px solid rgba(255,255,255,.07);
+      padding: 48px 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      justify-content: center;
+    }
+    .split-card-stat {
+      border-bottom: 1px solid rgba(255,255,255,.07);
+      padding-bottom: 20px;
+    }
+    .split-card-stat:last-child { border-bottom: none; padding-bottom: 0; }
+    .split-stat-num {
+      font-size: 40px;
+      font-weight: 800;
+      letter-spacing: -2px;
+      color: #fafafa;
+      line-height: 1;
+    }
+    .split-stat-label {
+      font-size: 11px;
+      color: rgba(255,255,255,.4);
+      margin-top: 4px;
+    }
+
+    .target-company-banner {
+      background: linear-gradient(135deg, rgba(99,102,241,.15), rgba(168,85,247,.15));
+      border: 1px solid rgba(99,102,241,.3);
+      border-radius: 20px;
+      padding: 48px;
+      margin: 80px auto;
+      max-width: 900px;
+      text-align: center;
+    }
+
+    .target-company-banner h3 {
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: var(--accent);
+      margin-bottom: 16px;
+      font-weight: 700;
+    }
+
+    .target-company-banner h2 {
+      font-size: clamp(28px, 4vw, 42px);
+      font-weight: 800;
+      letter-spacing: -1.5px;
+      margin-bottom: 20px;
+      line-height: 1.2;
+    }
+
+    .target-company-banner p {
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.8;
+      max-width: 640px;
+      margin: 0 auto 28px;
+    }
+
+    .target-company-links {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 768px) {
+      .about-grid { grid-template-columns: 1fr; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .project-card.featured { grid-column: auto; grid-template-columns: 1fr; }
+      .skills-categories { grid-template-columns: 1fr; }
+      nav { width: calc(100% - 32px); justify-content: center; }
+      .split-card { grid-template-columns: 1fr; }
+      .split-card-visual { border-left: none; border-top: 1px solid rgba(255,255,255,.07); }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="#about" data-translate="nav.about">About</a>
+  <a href="#experience" data-translate="nav.work">Work</a>
+  <a href="#projects" data-translate="nav.projects">Projects</a>
+  <a href="#skills" data-translate="nav.skills">Skills</a>
+  <a href="#contact" class="nav-cta" data-translate="nav.contact">Contact ↗</a>
+  <div class="lang-toggle" onclick="toggleLanguage()">
+    <span class="lang-flag active" id="flag-en">🇬🇧</span>
+    <div class="lang-divider"></div>
+    <span class="lang-flag inactive" id="flag-de">🇩🇪</span>
+  </div>
+</nav>
+
+<section id="hero">
+  <div class="blob-green"></div>
+  <div class="hero-badge" data-translate="hero.badge">Available for Technical Development Roles</div>
+  <h1 class="hero-title">
+    <span class="gradient">Glenn McVey</span>
+  </h1>
+  <p class="hero-sub" data-translate="hero.subtitle">
+    <strong>Full-Stack Engineer & AI/ML Developer</strong> — Building production systems with Python, TypeScript & React. 7+ years shipping reliable infrastructure that scales.
+  </p>
+  <div class="hero-actions">
+    <a href="#projects" class="btn btn-primary" data-translate="hero.cta">View Projects ↓</a>
+    <a href="mailto:mcveyglenn@gmail.com" class="btn btn-ghost">mcveyglenn@gmail.com</a>
+  </div>
+  <div class="scroll-hint">
+    <div class="arrow"></div>
+  </div>
+</section>
+
+<div class="marquee-strip">
+  <div class="marquee-track">
+    <div class="marquee-item">Full-Stack Engineer <span class="marquee-sep"></span></div>
+    <div class="marquee-item">Python &middot; TypeScript &middot; React <span class="marquee-sep"></span></div>
+    <div class="marquee-item">AI/ML Systems <span class="marquee-sep"></span></div>
+    <div class="marquee-item">Git &middot; PostgreSQL &middot; Redis <span class="marquee-sep"></span></div>
+    <div class="marquee-item">Production Infrastructure <span class="marquee-sep"></span></div>
+    <div class="marquee-item">LLM Integration <span class="marquee-sep"></span></div>
+    <div class="marquee-item">Remote &middot; Germany <span class="marquee-sep"></span></div>
+    <div class="marquee-item">Systems Thinking <span class="marquee-sep"></span></div>
+    <div class="marquee-item">Full-Stack Engineer <span class="marquee-sep"></span></div>
+    <div class="marquee-item">Python &middot; TypeScript &middot; React <span class="marquee-sep"></span></div>
+    <div class="marquee-item">AI/ML Systems <span class="marquee-sep"></span></div>
+    <div class="marquee-item">Git &middot; PostgreSQL &middot; Redis <span class="marquee-sep"></span></div>
+  </div>
+</div>
+
+<section id="about">
+  <div class="section-label" data-translate="about.label">About me</div>
+  <h2 class="section-title" data-translate="about.title">Builder. Operator.<br>Systems thinker.</h2>
+  <div class="about-grid fade-in">
+    <div class="about-text">
+      <p data-translate="about.p1">
+        I build production-ready systems with <strong>Python, TypeScript, and modern AI/ML stacks</strong>. Currently shipping <strong>Wekeke.com</strong> — a SaaS platform with AI-powered DM automation — while working safety-critical ops at DHL.
+      </p>
+      <p data-translate="about.p2">
+        Strong Git workflow practitioner with <strong>7+ years building scalable infrastructure</strong>: PostgreSQL systems handling 100k+ transactions/day, Redis-based queue systems, algorithmic trading bots with ML, and production LLM integrations.
+      </p>
+      <p data-translate="about.p3">
+        Before engineering, I led <strong>50+ person teams at Amazon</strong>. That shapes how I code: systematic thinking, comprehensive documentation, and treating reliability as a first-class requirement.
+      </p>
+      <p data-translate="about.p4">
+        Based in <strong>Halle (Saale), Germany</strong>. Full work authorization. Open to remote-first or hybrid roles. Native English, Deutsch B1–B2.
+      </p>
+    </div>
+    <div class="about-stats">
+      <div class="stat-card">
+        <div class="stat-number">7+</div>
+        <div class="stat-label" data-translate="about.stat1">Years Python + TypeScript</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">100k+</div>
+        <div class="stat-label" data-translate="about.stat2">Daily DB transactions (production)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">3</div>
+        <div class="stat-label" data-translate="about.stat3">AI/ML projects shipped</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">50+</div>
+        <div class="stat-label" data-translate="about.stat4">Team members led (Amazon)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="section-label" data-translate="exp.label">Experience</div>
+  <h2 class="section-title" data-translate="exp.title">Where I've worked</h2>
+  <p class="section-desc" data-translate="exp.desc">Hands-on roles spanning full-stack development, AI/ML systems, and operations leadership.</p>
+
+  <div class="exp-list">
+
+    <div class="exp-item fade-in">
+      <div class="exp-top">
+        <div>
+          <div class="exp-role" data-translate="exp.wekeke.role">Founder & Lead Full-Stack Developer</div>
+          <div class="exp-company" data-translate="exp.wekeke.company">Wekeke.com</div>
+        </div>
+        <span class="exp-date" data-translate="exp.wekeke.date">Dec 2025 – Present</span>
+      </div>
+      <ul class="exp-bullets">
+        <li data-translate="exp.wekeke.bullet1">Built production AI-powered SaaS platform for creator DM automation using React, Next.js, TypeScript, and Python backend services.</li>
+        <li data-translate="exp.wekeke.bullet2">Integrated LLM APIs for intelligent message generation and response handling — production-grade reliability with rate-limit management.</li>
+        <li data-translate="exp.wekeke.bullet3">Architected PostgreSQL + Redis infrastructure handling real-time sync across X, Discord, Bluesky — OAuth 2.0 flows and GDPR compliance from day one.</li>
+        <li data-translate="exp.wekeke.bullet4">Implemented background worker systems for high-concurrency message processing with idempotent job handling and comprehensive error recovery.</li>
+        <li data-translate="exp.wekeke.bullet5">Full Git workflow: feature branches, PR reviews, CI/CD via GitHub Actions, zero-downtime deployments to Vercel.</li>
+      </ul>
+      <div class="exp-tags">
+        <span class="tag">React / Next.js</span>
+        <span class="tag">TypeScript</span>
+        <span class="tag python">Python</span>
+        <span class="tag ml">LLM APIs</span>
+        <span class="tag">PostgreSQL</span>
+        <span class="tag">Redis</span>
+        <span class="tag">Git / GitHub</span>
+        <span class="tag">OAuth 2.0</span>
+        <span class="tag">Vercel</span>
+      </div>
+    </div>
+
+    <div class="exp-item fade-in">
+      <div class="exp-top">
+        <div>
+          <div class="exp-role" data-translate="exp.aiml.role">AI/ML Engineer (Personal Projects)</div>
+          <div class="exp-company" data-translate="exp.aiml.company">Freelance</div>
+        </div>
+        <span class="exp-date" data-translate="exp.aiml.date">2019 – Present</span>
+      </div>
+      <ul class="exp-bullets">
+        <li data-translate="exp.aiml.bullet1">Developed algorithmic trading bot with advanced ML models (Python, pandas, scikit-learn) — automated equity execution with risk management.</li>
+        <li data-translate="exp.aiml.bullet2">Built data pipelines for real-time market analysis, backtesting frameworks, and performance optimization.</li>
+        <li data-translate="exp.aiml.bullet3">Implemented comprehensive error handling, logging, and monitoring for production ML systems.</li>
+        <li data-translate="exp.aiml.bullet4">Managed all code via Git with structured branching strategy and version-controlled model training pipelines.</li>
+      </ul>
+      <div class="exp-tags">
+        <span class="tag python">Python</span>
+        <span class="tag ml">Machine Learning</span>
+        <span class="tag ml">Algorithm Design</span>
+        <span class="tag">Pandas / NumPy</span>
+        <span class="tag">Git</span>
+        <span class="tag">Data Pipelines</span>
+      </div>
+    </div>
+
+    <div class="exp-item fade-in">
+      <div class="exp-top">
+        <div>
+          <div class="exp-role" data-translate="exp.dhl.role">Aircraft Handler / Quality Control</div>
+          <div class="exp-company" data-translate="exp.dhl.company">DHL, Leipzig</div>
+        </div>
+        <span class="exp-date" data-translate="exp.dhl.date">Feb 2024 – Present</span>
+      </div>
+      <ul class="exp-bullets">
+        <li data-translate="exp.dhl.bullet1">Safety-critical operations in highly regulated aviation environment — systematic process adherence and quality control.</li>
+        <li data-translate="exp.dhl.bullet2">Deviation detection against EU safety standards — precise execution under time pressure.</li>
+      </ul>
+      <div class="exp-tags">
+        <span class="tag">Quality Control</span>
+        <span class="tag">Process Adherence</span>
+        <span class="tag">Compliance</span>
+      </div>
+    </div>
+
+    <div class="exp-item fade-in">
+      <div class="exp-top">
+        <div>
+          <div class="exp-role" data-translate="exp.amazon.role">Warehouse Team Lead</div>
+          <div class="exp-company" data-translate="exp.amazon.company">Amazon Return Center TUS1, Leipzig</div>
+        </div>
+        <span class="exp-date" data-translate="exp.amazon.date">Oct 2017 – Nov 2021</span>
+      </div>
+      <ul class="exp-bullets">
+        <li data-translate="exp.amazon.bullet1">Led 50+ associates in high-volume operations — introduced standardized control processes that measurably reduced error rates.</li>
+        <li data-translate="exp.amazon.bullet2">Process optimization through systematic bottleneck analysis — operationalized improvements at scale.</li>
+      </ul>
+      <div class="exp-tags">
+        <span class="tag">Team Leadership</span>
+        <span class="tag">Process Improvement</span>
+        <span class="tag">Operations</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="projects">
+  <div class="section-label" data-translate="projects.label">Projects</div>
+  <h2 class="section-title" data-translate="projects.title">What I've built</h2>
+  <p class="section-desc" data-translate="projects.desc">Production systems with real users, real data, and real uptime requirements.</p>
+
+  <div class="projects-grid">
+
+    <div class="project-card featured fade-in">
+      <div>
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+          <div style="width:40px;height:40px;background:linear-gradient(135deg,#6366f1,#a855f7);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;">⚡</div>
+          <span style="font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);" data-translate="projects.featured">Featured</span>
+        </div>
+        <div class="project-name" data-translate="projects.wekeke.name">Wekeke.com — AI-Powered Creator Platform</div>
+        <p class="project-desc" data-translate="projects.wekeke.desc">
+          Production SaaS for automated DM management with LLM-powered message generation. Built solo in 4 months — TypeScript frontend, Python backend services, full CI/CD pipeline.
+        </p>
+        <ul class="project-highlights">
+          <li data-translate="projects.wekeke.bullet1">LLM API integration for intelligent response generation with context awareness</li>
+          <li data-translate="projects.wekeke.bullet2">Multi-platform OAuth 2.0 flows (X, Discord, Bluesky) with rate-limit handling</li>
+          <li data-translate="projects.wekeke.bullet3">PostgreSQL system of record + Redis queue for async background jobs</li>
+          <li data-translate="projects.wekeke.bullet4">Git-managed codebase: feature branches, PR reviews, automated testing, zero-downtime deploys</li>
+          <li data-translate="projects.wekeke.bullet5">Comprehensive monitoring: logs, health checks, error tracking, retry logic</li>
+        </ul>
+        <div class="exp-tags">
+          <span class="tag">React / Next.js</span>
+          <span class="tag">TypeScript</span>
+          <span class="tag python">Python</span>
+          <span class="tag ml">LLM APIs</span>
+          <span class="tag">PostgreSQL</span>
+          <span class="tag">Redis</span>
+          <span class="tag">Git / GitHub Actions</span>
+        </div>
+      </div>
+      <div class="project-visual">
+        <div style="font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:1.2px;margin-bottom:8px;" data-translate="projects.wekeke.stats">System Stats</div>
+        <div class="mini-stat">
+          <span class="mini-stat-label" data-translate="projects.wekeke.uptime">Uptime</span>
+          <span class="mini-stat-value">99.9%</span>
+        </div>
+        <div class="mini-bar-track"><div class="mini-bar-fill" style="width:99.9%"></div></div>
+        <div class="mini-stat" style="margin-top:12px;">
+          <span class="mini-stat-label" data-translate="projects.wekeke.aiml">AI/ML Integration</span>
+          <span class="mini-stat-value" data-translate="projects.wekeke.aimlval">Production LLMs</span>
+        </div>
+        <div class="mini-bar-track"><div class="mini-bar-fill" style="width:85%"></div></div>
+        <div class="mini-stat" style="margin-top:12px;">
+          <span class="mini-stat-label" data-translate="projects.wekeke.git">Git-Managed</span>
+          <span class="mini-stat-value" data-translate="projects.wekeke.gitval">Full CI/CD</span>
+        </div>
+        <div class="mini-bar-track"><div class="mini-bar-fill" style="width:100%"></div></div>
+        <div style="margin-top:20px;padding-top:16px;border-top:1px solid var(--border);font-size:12px;color:var(--muted);display:flex;align-items:center;gap:6px;">
+          <span style="width:6px;height:6px;background:var(--green);border-radius:50%;box-shadow:0 0 6px var(--green);"></span>
+          <span data-translate="projects.wekeke.live">Live in production</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card fade-in">
+      <div class="project-icon">🤖</div>
+      <div class="project-name" data-translate="projects.mlbot.name">ML Trading Bot</div>
+      <p class="project-desc" data-translate="projects.mlbot.desc">Algorithmic trading system with ML-powered decision models — Python-based with real-time data pipelines and automated execution.</p>
+      <ul class="project-highlights">
+        <li data-translate="projects.mlbot.bullet1">Advanced ML models (scikit-learn) for pattern recognition</li>
+        <li data-translate="projects.mlbot.bullet2">Real-time data ingestion and feature engineering</li>
+        <li data-translate="projects.mlbot.bullet3">Comprehensive backtesting and risk management</li>
+        <li data-translate="projects.mlbot.bullet4">Production monitoring and error recovery</li>
+      </ul>
+      <div class="exp-tags" style="margin-top:16px;">
+        <span class="tag python">Python</span>
+        <span class="tag ml">Machine Learning</span>
+        <span class="tag">Pandas</span>
+        <span class="tag">Git</span>
+      </div>
+    </div>
+
+    <div class="project-card fade-in">
+      <div class="project-icon">📊</div>
+      <div class="project-name" data-translate="projects.dashboard.name">Data Analytics Dashboard</div>
+      <p class="project-desc" data-translate="projects.dashboard.desc">Internal analytics platform for operations insights — SQL-powered KPI aggregations with real-time data refresh and drill-down capabilities.</p>
+      <ul class="project-highlights">
+        <li data-translate="projects.dashboard.bullet1">PostgreSQL query optimization for large datasets</li>
+        <li data-translate="projects.dashboard.bullet2">TypeScript frontend with interactive charting</li>
+        <li data-translate="projects.dashboard.bullet3">Background polling and cache invalidation</li>
+        <li data-translate="projects.dashboard.bullet4">Git-based deployment pipeline</li>
+      </ul>
+      <div class="exp-tags" style="margin-top:16px;">
+        <span class="tag">TypeScript</span>
+        <span class="tag">PostgreSQL</span>
+        <span class="tag">Data Viz</span>
+        <span class="tag">Git</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="skills">
+  <div class="section-label" data-translate="skills.label">Skills</div>
+  <h2 class="section-title" data-translate="skills.title">What I work with</h2>
+  <p class="section-desc" data-translate="skills.desc">Production-tested technologies. Everything here has been used to ship real systems.</p>
+
+  <div class="skills-categories fade-in">
+    <div class="skill-category">
+      <div class="skill-cat-title">Languages & Core</div>
+      <div class="skill-items">
+        <div class="skill-item">
+          <span class="skill-name">Python</span>
+          <div class="skill-dots">
+            <div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div>
+          </div>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">TypeScript</span>
+          <div class="skill-dots">
+            <div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div>
+          </div>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">JavaScript ES6+</span>
+          <div class="skill-dots">
+            <div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div>
+          </div>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">Git / GitHub</span>
+          <div class="skill-dots">
+            <div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="skill-category">
+      <div class="skill-cat-title">Frontend & UI</div>
+      <div class="skill-items">
+        <div class="skill-item">
+          <span class="skill-name">React / Next.js</span>
+          <div class="skill-dots">
+            <div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div>
+          </div>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">HTML / CSS</span>
+          <div class="skill-dots">
+            <div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div>
+          </div>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">Tailwind / Modern CSS</span>
+          <div class="skill-dots">
+            <div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot empty"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="skill-category">
+      <div class="skill-cat-title">Backend & Data</div>
+      <div class="skill-items">
+        <div class="skill-item">
+          <span class="skill-name">Node.js</span>
+          <div class="skill-dots">
+            <div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div>
+          </div>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">PostgreSQL</span>
+          <div class="skill-dots">
+            <div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div>
+          </div>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">Redis / Queues</span>
+          <div class="skill-dots">
+            <div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot empty"></div>
+          </div>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">REST APIs / OAuth</span>
+          <div class="skill-dots">
+            <div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="skill-category">
+      <div class="skill-cat-title">AI/ML & Data Science</div>
+      <div class="skill-items">
+        <div class="skill-item">
+          <span class="skill-name">LLM APIs</span>
+          <div class="skill-dots">
+            <div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot empty"></div>
+          </div>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">scikit-learn</span>
+          <div class="skill-dots">
+            <div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot empty"></div>
+          </div>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">Pandas / NumPy</span>
+          <div class="skill-dots">
+            <div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot empty"></div>
+          </div>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">Algorithm Design</span>
+          <div class="skill-dots">
+            <div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot empty"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="skill-category">
+      <div class="skill-cat-title">DevOps & Infrastructure</div>
+      <div class="skill-items">
+        <div class="skill-item">
+          <span class="skill-name">Linux / Bash</span>
+          <div class="skill-dots">
+            <div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot empty"></div>
+          </div>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">GitHub Actions</span>
+          <div class="skill-dots">
+            <div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot empty"></div>
+          </div>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">Vercel / CI-CD</span>
+          <div class="skill-dots">
+            <div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot empty"></div>
+          </div>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">Monitoring / Logging</span>
+          <div class="skill-dots">
+            <div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot empty"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="skill-category">
+      <div class="skill-cat-title">Methodologies</div>
+      <div class="skill-items">
+        <div class="skill-item">
+          <span class="skill-name">Git Workflow</span>
+          <div class="skill-dots">
+            <div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div>
+          </div>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">Systems Design</span>
+          <div class="skill-dots">
+            <div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div>
+          </div>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">Testing & QA</span>
+          <div class="skill-dots">
+            <div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot empty"></div>
+          </div>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">Documentation</span>
+          <div class="skill-dots">
+            <div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding: 0 24px 80px; max-width:1000px; margin:0 auto;">
+  <div class="split-card fade-in">
+    <div class="split-card-text">
+      <div>
+        <div class="split-card-eyebrow">Featured Project</div>
+        <h2 class="split-card-heading" style="margin-top:16px;">Production AI system.<br>Built solo in 4 months.</h2>
+      </div>
+      <p class="split-card-body">
+        Wekeke.com — Full-stack SaaS with LLM-powered automation. Real users, real uptime, real constraints. TypeScript frontend, Python services, PostgreSQL + Redis infrastructure, comprehensive CI/CD. This is what I do with a deadline and a vision.
+      </p>
+      <a href="https://wekeke.com" class="split-card-cta" target="_blank">Visit Wekeke.com &nbsp;→</a>
+    </div>
+    <div class="split-card-visual">
+      <div class="split-card-stat">
+        <div class="split-stat-num">4mo</div>
+        <div class="split-stat-label">Concept to production v1</div>
+      </div>
+      <div class="split-card-stat">
+        <div class="split-stat-num">3</div>
+        <div class="split-stat-label">Live API integrations (X, Discord, Bluesky)</div>
+      </div>
+      <div class="split-card-stat">
+        <div class="split-stat-num">99.9%</div>
+        <div class="split-stat-label">Uptime since launch</div>
+      </div>
+      <div class="split-card-stat">
+        <div class="split-stat-num">AI</div>
+        <div class="split-stat-label">LLM-powered message generation</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" style="max-width:1000px;margin:0 auto;">
+  <div class="contact-card fade-in">
+    <div class="section-label" style="justify-content:center;" data-translate="contact.label">Let's talk</div>
+    <h2 class="section-title" style="font-size:clamp(28px,4vw,40px);margin-bottom:12px;" data-translate="contact.title">Open for Technical Development roles</h2>
+    <p style="font-size:15px;color:var(--muted);line-height:1.7;max-width:420px;margin:0 auto;" data-translate="contact.desc">
+      Remote or hybrid in Germany. Full work authorization. Available immediately. Strong Python + Git + production systems background. Ready to contribute from day one.
+    </p>
+    <div class="contact-links">
+      <a href="mailto:mcveyglenn@gmail.com" class="contact-link">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+        mcveyglenn@gmail.com
+      </a>
+      <a href="https://linkedin.com/in/glenn-mcvey-89909218a" class="contact-link" target="_blank">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        LinkedIn
+      </a>
+      <a href="https://github.com/tre508" class="contact-link" target="_blank">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+        GitHub
+      </a>
+      <a href="https://wekeke.com" class="contact-link" target="_blank">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        Wekeke.com
+      </a>
+      <a href="tel:+491637080894" class="contact-link">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.72 10.5 19.79 19.79 0 0 1 1.63 2 2 2 0 0 1 3.62 0h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 7.91a16 16 0 0 0 6.29 6.29l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        +49 163 7080894
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Glenn McVey · Halle (Saale), Germany · Python • TypeScript • AI/ML • Production Systems</p>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('nav a');
+
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 200) current = s.id;
+    });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + current
+        ? 'var(--text)' : '';
+    });
+  });
+
+  // Language toggle functionality
+  let currentLang = 'en';
+
+  const translations = {
+    en: {
+      // Navigation
+      'nav.about': 'About',
+      'nav.work': 'Work',
+      'nav.projects': 'Projects',
+      'nav.skills': 'Skills',
+      'nav.contact': 'Contact ↗',
+
+      // Hero
+      'hero.badge': 'Available for Technical Development Roles',
+      'hero.subtitle': {html: true, text: '<strong>Full-Stack Engineer & AI/ML Developer</strong> — Building production systems with Python, TypeScript & React. 7+ years shipping reliable infrastructure that scales.'},
+      'hero.cta': 'View Projects ↓',
+
+      // Prelytics Banner
+      'banner.heading': 'Currently Targeting',
+      'banner.company': 'prelytics® — Technical Development Track',
+      'banner.desc': 'Ruhrgebiet-based AI/ML innovation company seeking developers with strong Python & Git experience. Perfect alignment with my production systems background, AI/ML expertise, and systematic problem-solving approach.',
+      'banner.visit': 'Visit prelytics.eu ↗',
+      'banner.careers': 'Careers Page ↗',
+
+      // About Section
+      'about.label': 'About me',
+      'about.title': {html: true, text: 'Builder. Operator.<br>Systems thinker.'},
+      'about.p1': {html: true, text: 'I build production-ready systems with <strong>Python, TypeScript, and modern AI/ML stacks</strong>. Currently shipping <strong>Wekeke.com</strong> — a SaaS platform with AI-powered DM automation — while working safety-critical ops at DHL.'},
+      'about.p2': {html: true, text: 'Strong Git workflow practitioner with <strong>7+ years building scalable infrastructure</strong>: PostgreSQL systems handling 100k+ transactions/day, Redis-based queue systems, algorithmic trading bots with ML, and production LLM integrations.'},
+      'about.p3': {html: true, text: 'Before engineering, I led <strong>50+ person teams at Amazon</strong>. That shapes how I code: systematic thinking, comprehensive documentation, and treating reliability as a first-class requirement.'},
+      'about.p4': {html: true, text: 'Based in <strong>Halle (Saale), Germany</strong>. Full work authorization. Open to remote-first or hybrid roles. Native English, Deutsch B1–B2.'},
+      'about.stat1': 'Years Python + TypeScript',
+      'about.stat2': 'Daily DB transactions (production)',
+      'about.stat3': 'AI/ML projects shipped',
+      'about.stat4': 'Team members led (Amazon)',
+
+      // Experience Section
+      'exp.label': 'Experience',
+      'exp.title': "Where I've worked",
+      'exp.desc': 'Hands-on roles spanning full-stack development, AI/ML systems, and operations leadership.',
+      'exp.wekeke.role': 'Founder & Lead Full-Stack Developer',
+      'exp.wekeke.company': 'Wekeke.com',
+      'exp.wekeke.date': 'Dec 2025 – Present',
+      'exp.wekeke.bullet1': 'Built production AI-powered SaaS platform for creator DM automation using React, Next.js, TypeScript, and Python backend services.',
+      'exp.wekeke.bullet2': 'Integrated LLM APIs for intelligent message generation and response handling — production-grade reliability with rate-limit management.',
+      'exp.wekeke.bullet3': 'Architected PostgreSQL + Redis infrastructure handling real-time sync across X, Discord, Bluesky — OAuth 2.0 flows and GDPR compliance from day one.',
+      'exp.wekeke.bullet4': 'Implemented background worker systems for high-concurrency message processing with idempotent job handling and comprehensive error recovery.',
+      'exp.wekeke.bullet5': 'Full Git workflow: feature branches, PR reviews, CI/CD via GitHub Actions, zero-downtime deployments to Vercel.',
+      'exp.aiml.role': 'AI/ML Engineer (Personal Projects)',
+      'exp.aiml.company': 'Freelance',
+      'exp.aiml.date': '2019 – Present',
+      'exp.aiml.bullet1': 'Developed algorithmic trading bot with advanced ML models (Python, pandas, scikit-learn) — automated equity execution with risk management.',
+      'exp.aiml.bullet2': 'Built data pipelines for real-time market analysis, backtesting frameworks, and performance optimization.',
+      'exp.aiml.bullet3': 'Implemented comprehensive error handling, logging, and monitoring for production ML systems.',
+      'exp.aiml.bullet4': 'Managed all code via Git with structured branching strategy and version-controlled model training pipelines.',
+      'exp.dhl.role': 'Aircraft Handler / Quality Control',
+      'exp.dhl.company': 'DHL, Leipzig',
+      'exp.dhl.date': 'Feb 2024 – Present',
+      'exp.dhl.bullet1': 'Safety-critical operations in highly regulated aviation environment — systematic process adherence and quality control.',
+      'exp.dhl.bullet2': 'Deviation detection against EU safety standards — precise execution under time pressure.',
+      'exp.amazon.role': 'Warehouse Team Lead',
+      'exp.amazon.company': 'Amazon Return Center TUS1, Leipzig',
+      'exp.amazon.date': 'Oct 2017 – Nov 2021',
+      'exp.amazon.bullet1': 'Led 50+ associates in high-volume operations — introduced standardized control processes that measurably reduced error rates.',
+      'exp.amazon.bullet2': 'Process optimization through systematic bottleneck analysis — operationalized improvements at scale.',
+
+      // Skills Section
+      'skills.label': 'Skills',
+      'skills.title': 'What I work with',
+      'skills.desc': 'Production-tested technologies. Everything here has been used to ship real systems.',
+
+      // Projects Section
+      'projects.label': 'Projects',
+      'projects.title': "What I've built",
+      'projects.desc': 'Production systems with real users, real data, and real uptime requirements.',
+      'projects.featured': 'Featured',
+      'projects.wekeke.name': 'Wekeke.com — AI-Powered Creator Platform',
+      'projects.wekeke.desc': 'Production SaaS for automated DM management with LLM-powered message generation. Built solo in 4 months — TypeScript frontend, Python backend services, full CI/CD pipeline.',
+      'projects.wekeke.bullet1': 'LLM API integration for intelligent response generation with context awareness',
+      'projects.wekeke.bullet2': 'Multi-platform OAuth 2.0 flows (X, Discord, Bluesky) with rate-limit handling',
+      'projects.wekeke.bullet3': 'PostgreSQL system of record + Redis queue for async background jobs',
+      'projects.wekeke.bullet4': 'Git-managed codebase: feature branches, PR reviews, automated testing, zero-downtime deploys',
+      'projects.wekeke.bullet5': 'Comprehensive monitoring: logs, health checks, error tracking, retry logic',
+      'projects.wekeke.stats': 'System Stats',
+      'projects.wekeke.uptime': 'Uptime',
+      'projects.wekeke.aiml': 'AI/ML Integration',
+      'projects.wekeke.aimlval': 'Production LLMs',
+      'projects.wekeke.git': 'Git-Managed',
+      'projects.wekeke.gitval': 'Full CI/CD',
+      'projects.wekeke.live': 'Live in production',
+      'projects.mlbot.name': 'ML Trading Bot',
+      'projects.mlbot.desc': 'Algorithmic trading system with ML-powered decision models — Python-based with real-time data pipelines and automated execution.',
+      'projects.mlbot.bullet1': 'Advanced ML models (scikit-learn) for pattern recognition',
+      'projects.mlbot.bullet2': 'Real-time data ingestion and feature engineering',
+      'projects.mlbot.bullet3': 'Comprehensive backtesting and risk management',
+      'projects.mlbot.bullet4': 'Production monitoring and error recovery',
+      'projects.dashboard.name': 'Data Analytics Dashboard',
+      'projects.dashboard.desc': 'Internal analytics platform for operations insights — SQL-powered KPI aggregations with real-time data refresh and drill-down capabilities.',
+      'projects.dashboard.bullet1': 'PostgreSQL query optimization for large datasets',
+      'projects.dashboard.bullet2': 'TypeScript frontend with interactive charting',
+      'projects.dashboard.bullet3': 'Background polling and cache invalidation',
+      'projects.dashboard.bullet4': 'Git-based deployment pipeline',
+
+      // Contact Section
+      'contact.label': "Let's talk",
+      'contact.title': 'Open for Technical Development roles',
+      'contact.desc': 'Remote or hybrid in Germany. Full work authorization. Available immediately. Strong Python + Git + production systems background. Ready to contribute from day one.',
+    },
+    de: {
+      // Navigation
+      'nav.about': 'Über mich',
+      'nav.work': 'Berufserfahrung',
+      'nav.projects': 'Projekte',
+      'nav.skills': 'Kenntnisse',
+      'nav.contact': 'Kontakt ↗',
+
+      // Hero
+      'hero.badge': 'Verfügbar für Technical Development Rollen',
+      'hero.subtitle': {html: true, text: '<strong>Full-Stack Engineer & AI/ML-Entwickler</strong> — Bau produktionsreifer Systeme mit Python, TypeScript & React. 7+ Jahre Erfahrung mit skalierbarer Infrastruktur.'},
+      'hero.cta': 'Projekte ansehen ↓',
+
+      // Prelytics Banner
+      'banner.heading': 'Aktuell im Fokus',
+      'banner.company': 'prelytics® — Technical Development Track',
+      'banner.desc': 'Ruhrgebiet-basiertes AI/ML-Innovationsunternehmen sucht Entwickler mit starken Python- & Git-Kenntnissen. Perfekte Übereinstimmung mit meinem Produktionssystem-Hintergrund, AI/ML-Expertise und systematischem Problem-Solving-Ansatz.',
+      'banner.visit': 'prelytics.eu besuchen ↗',
+      'banner.careers': 'Karriere-Seite ↗',
+
+      // About Section
+      'about.label': 'Über mich',
+      'about.title': {html: true, text: 'Builder. Operator.<br>Systems thinker.'},
+      'about.p1': {html: true, text: 'Ich entwickle produktionsreife Systeme mit <strong>Python, TypeScript und modernen AI/ML-Stacks</strong>. Aktuell bringe ich <strong>Wekeke.com</strong> — eine SaaS-Plattform mit KI-gesteuerter DM-Automatisierung — während ich in sicherheitskritischen Ops bei DHL arbeite.'},
+      'about.p2': {html: true, text: 'Erfahrener Git-Workflow-Praktiker mit <strong>7+ Jahren Erfahrung im Aufbau skalierbarer Infrastruktur</strong>: PostgreSQL-Systeme mit 100k+ Transaktionen/Tag, Redis-basierte Queue-Systeme, algorithmische Trading-Bots mit ML und Produktions-LLM-Integrationen.'},
+      'about.p3': {html: true, text: 'Vor meiner Entwicklertätigkeit leitete ich <strong>50+ Personen-Teams bei Amazon</strong>. Das prägt, wie ich Code schreibe: systematisches Denken, umfassende Dokumentation und Zuverlässigkeit als erstklassige Anforderung.'},
+      'about.p4': {html: true, text: 'Standort <strong>Halle (Saale), Deutschland</strong>. Vollständige Arbeitserlaubnis. Offen für Remote-First oder Hybrid-Rollen. Englisch Muttersprache, Deutsch B1–B2.'},
+      'about.stat1': 'Jahre Python + TypeScript',
+      'about.stat2': 'Tägliche DB-Transaktionen (Produktion)',
+      'about.stat3': 'AI/ML-Projekte ausgeliefert',
+      'about.stat4': 'Teammitglieder geleitet (Amazon)',
+
+      // Experience Section
+      'exp.label': 'Berufserfahrung',
+      'exp.title': 'Wo ich gearbeitet habe',
+      'exp.desc': 'Praktische Rollen im Full-Stack-Development, AI/ML-Systemen und Betriebsleitung.',
+      'exp.wekeke.role': 'Gründer & Lead Full-Stack-Entwickler',
+      'exp.wekeke.company': 'Wekeke.com',
+      'exp.wekeke.date': 'Dez 2025 – Heute',
+      'exp.wekeke.bullet1': 'Produktions-KI-SaaS-Plattform für Creator-DM-Automatisierung mit React, Next.js, TypeScript und Python-Backend-Services entwickelt.',
+      'exp.wekeke.bullet2': 'LLM-APIs für intelligente Nachrichtengenerierung und Response-Handling integriert — produktionsreife Zuverlässigkeit mit Rate-Limit-Management.',
+      'exp.wekeke.bullet3': 'PostgreSQL + Redis-Infrastruktur architektiert für Echtzeit-Synchronisation über X, Discord, Bluesky — OAuth 2.0-Flows und DSGVO-Konformität von Tag eins.',
+      'exp.wekeke.bullet4': 'Background-Worker-Systeme für hochkonkurrente Nachrichtenverarbeitung mit idempotenter Job-Behandlung und umfassender Fehlerwiederherstellung implementiert.',
+      'exp.wekeke.bullet5': 'Vollständiger Git-Workflow: Feature-Branches, PR-Reviews, CI/CD via GitHub Actions, Zero-Downtime-Deployments auf Vercel.',
+      'exp.aiml.role': 'AI/ML-Engineer (Persönliche Projekte)',
+      'exp.aiml.company': 'Freiberuflich',
+      'exp.aiml.date': '2019 – Heute',
+      'exp.aiml.bullet1': 'Algorithmischen Trading-Bot mit fortgeschrittenen ML-Modellen (Python, pandas, scikit-learn) entwickelt — automatisierte Aktienausführung mit Risikomanagement.',
+      'exp.aiml.bullet2': 'Daten-Pipelines für Echtzeit-Marktanalyse, Backtesting-Frameworks und Performance-Optimierung gebaut.',
+      'exp.aiml.bullet3': 'Umfassendes Error-Handling, Logging und Monitoring für Produktions-ML-Systeme implementiert.',
+      'exp.aiml.bullet4': 'Gesamten Code via Git mit strukturierter Branching-Strategie und versionskontrollierten Modelltraining-Pipelines verwaltet.',
+      'exp.dhl.role': 'Flugzeugabfertiger / Qualitätskontrolle',
+      'exp.dhl.company': 'DHL, Leipzig',
+      'exp.dhl.date': 'Feb 2024 – Heute',
+      'exp.dhl.bullet1': 'Sicherheitskritische Operationen in hochregulierten Luftfahrtumgebungen — systematische Prozessbeachtung und Qualitätskontrolle.',
+      'exp.dhl.bullet2': 'Abweichungserkennung gegen EU-Sicherheitsstandards — präzise Ausführung unter Zeitdruck.',
+      'exp.amazon.role': 'Warehouse Team Lead',
+      'exp.amazon.company': 'Amazon Return Center TUS1, Leipzig',
+      'exp.amazon.date': 'Okt 2017 – Nov 2021',
+      'exp.amazon.bullet1': '50+ Mitarbeiter in Hochvolumen-Operationen geleitet — standardisierte Kontrollprozesse eingeführt, die Fehlerraten messbar reduzierten.',
+      'exp.amazon.bullet2': 'Prozessoptimierung durch systematische Bottleneck-Analyse — Verbesserungen im großen Maßstab operationalisiert.',
+
+      // Skills Section
+      'skills.label': 'Kenntnisse',
+      'skills.title': 'Womit ich arbeite',
+      'skills.desc': 'Produktionsgetestete Technologien. Alles hier wurde verwendet, um echte Systeme auszuliefern.',
+
+      // Projects Section
+      'projects.label': 'Projekte',
+      'projects.title': 'Was ich gebaut habe',
+      'projects.desc': 'Produktionssysteme mit echten Nutzern, echten Daten und echten Uptime-Anforderungen.',
+      'projects.featured': 'Hervorgehoben',
+      'projects.wekeke.name': 'Wekeke.com — KI-gestützte Creator-Plattform',
+      'projects.wekeke.desc': 'Produktions-SaaS für automatisiertes DM-Management mit LLM-gestützter Nachrichtengenerierung. Solo in 4 Monaten gebaut — TypeScript-Frontend, Python-Backend-Services, vollständige CI/CD-Pipeline.',
+      'projects.wekeke.bullet1': 'LLM-API-Integration für intelligente Response-Generierung mit Kontextbewusstsein',
+      'projects.wekeke.bullet2': 'Multi-Plattform OAuth 2.0-Flows (X, Discord, Bluesky) mit Rate-Limit-Handling',
+      'projects.wekeke.bullet3': 'PostgreSQL-System of Record + Redis-Queue für asynchrone Background-Jobs',
+      'projects.wekeke.bullet4': 'Git-verwaltete Codebase: Feature-Branches, PR-Reviews, automatisierte Tests, Zero-Downtime-Deploys',
+      'projects.wekeke.bullet5': 'Umfassendes Monitoring: Logs, Health-Checks, Error-Tracking, Retry-Logik',
+      'projects.wekeke.stats': 'System-Stats',
+      'projects.wekeke.uptime': 'Uptime',
+      'projects.wekeke.aiml': 'AI/ML-Integration',
+      'projects.wekeke.aimlval': 'Produktions-LLMs',
+      'projects.wekeke.git': 'Git-Verwaltet',
+      'projects.wekeke.gitval': 'Vollständiges CI/CD',
+      'projects.wekeke.live': 'Live in Produktion',
+      'projects.mlbot.name': 'ML Trading Bot',
+      'projects.mlbot.desc': 'Algorithmisches Trading-System mit ML-gestützten Entscheidungsmodellen — Python-basiert mit Echtzeit-Daten-Pipelines und automatisierter Ausführung.',
+      'projects.mlbot.bullet1': 'Fortgeschrittene ML-Modelle (scikit-learn) für Mustererkennung',
+      'projects.mlbot.bullet2': 'Echtzeit-Datenaufnahme und Feature-Engineering',
+      'projects.mlbot.bullet3': 'Umfassendes Backtesting und Risikomanagement',
+      'projects.mlbot.bullet4': 'Produktions-Monitoring und Fehlerwiederherstellung',
+      'projects.dashboard.name': 'Data Analytics Dashboard',
+      'projects.dashboard.desc': 'Interne Analytics-Plattform für Operations-Insights — SQL-gestützte KPI-Aggregationen mit Echtzeit-Datenaktualisierung und Drill-Down-Fähigkeiten.',
+      'projects.dashboard.bullet1': 'PostgreSQL-Query-Optimierung für große Datasets',
+      'projects.dashboard.bullet2': 'TypeScript-Frontend mit interaktiven Charts',
+      'projects.dashboard.bullet3': 'Background-Polling und Cache-Invalidierung',
+      'projects.dashboard.bullet4': 'Git-basierte Deployment-Pipeline',
+
+      // Contact Section
+      'contact.label': 'Kontakt',
+      'contact.title': 'Offen für Technical Development Rollen',
+      'contact.desc': 'Remote oder Hybrid in Deutschland. Vollständige Arbeitserlaubnis. Sofort verfügbar. Starker Python + Git + Produktionssystem-Hintergrund. Bereit, vom ersten Tag an beizutragen.',
+    }
+  };
+
+  function toggleLanguage() {
+    const flagEN = document.getElementById('flag-en');
+    const flagDE = document.getElementById('flag-de');
+
+    if (currentLang === 'en') {
+      currentLang = 'de';
+      flagEN.classList.remove('active');
+      flagEN.classList.add('inactive');
+      flagDE.classList.remove('inactive');
+      flagDE.classList.add('active');
+      applyTranslations('de');
+    } else {
+      currentLang = 'en';
+      flagDE.classList.remove('active');
+      flagDE.classList.add('inactive');
+      flagEN.classList.remove('inactive');
+      flagEN.classList.add('active');
+      applyTranslations('en');
+    }
+  }
+
+  function applyTranslations(lang) {
+    const elements = document.querySelectorAll('[data-translate]');
+    elements.forEach(el => {
+      const key = el.getAttribute('data-translate');
+      if (translations[lang] && translations[lang][key]) {
+        const translation = translations[lang][key];
+        if (typeof translation === 'object' && translation.html) {
+          // Only use innerHTML for pre-approved HTML content from our own translations
+          el.innerHTML = translation.text;
+        } else {
+          el.textContent = translation;
+        }
+      }
+    });
+  }
+</script>
+</body>
+</html>
